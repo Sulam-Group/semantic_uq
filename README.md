@@ -1,6 +1,6 @@
 # Conformal Risk Control for Semantic Uncertainty<br/>Quantification in Computed Tomography
 
-This is the official implementation of the paper [*Conformal Risk Control for Semantic Uncertainty Quantification in Computed Tomography*]()
+This is the official implementation of the paper [*Conformal Risk Control for Semantic Uncertainty Quantification in Computed Tomography*](https://arxiv.org/pdf/2503.00136)
 
 by [Jacopo Teneggi](https://jacopoteneggi.github.io), [J Webster Stayman](https://scholar.google.com/citations?user=pn8ZDP4AAAAJ&hl=en&oi=ao), and [Jeremias Sulam](https://sites.google.com/view/jsulam)
 
