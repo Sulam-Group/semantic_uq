@@ -174,4 +174,7 @@ cython_debug/
 .pypirc
 
 data
+results
 figures
+lib
+weights

@@ -8,6 +8,7 @@ import torch.distributed as distributed
 from monai.data import (
     DataLoader,
     DistributedSampler,
+    MetaTensor,
     decollate_batch,
     list_data_collate,
 )
@@ -25,7 +26,7 @@ from model import Denoiser
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", type=str)
+    parser.add_argument("--config", type=str, default="ts")
     parser.add_argument("--dist", action="store_true", default=False)
     parser.add_argument("--workdir", type=str, default=C.workdir)
     return parser.parse_args()
@@ -68,9 +69,11 @@ def main(args):
     with_fbp = config.data.task == "reconstruction"
     dataset = get_dataset(config, with_fbp=with_fbp, workdir=workdir)
     post_transform = Invertd(
-        keys=["image"] + prediction_keys,
+        keys=prediction_keys,
         transform=dataset.transform,
         orig_keys="image",
+        meta_keys=[f"{key}_meta_dict" for key in prediction_keys],
+        meta_key_postfix="meta_dict",
         nearest_interp=True,
         to_tensor=True,
     )
@@ -119,7 +122,7 @@ def main(args):
         data["q_lo"] = q_lo
         data["mmse"] = mmse
         data["q_hi"] = q_hi
-        data["body"] = body
+        data["body"] = MetaTensor(body.cpu().to(torch.uint8), meta=data["mmse"].meta)
 
         post_data = [post_transform(i) for i in decollate_batch(data)][0]
 

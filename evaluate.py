@@ -138,7 +138,7 @@ def main(args):
         data[organ_name] = f1[:, j]
 
     df = pd.DataFrame(data)
-    df.to_csv(os.path.join(config.get_results_dir(workdir=workdir), "evaluation.csv"))
+    # df.to_csv(os.path.join(config.get_results_dir(workdir=workdir), "evaluation.csv"))
 
 
 if __name__ == "__main__":

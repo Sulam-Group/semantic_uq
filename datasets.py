@@ -123,7 +123,6 @@ class ExperimentDataset(Dataset):
         )
         if with_fbp:
             keys += ["fbp"]
-        transform = Compose([transform, ToTensord(keys=keys)])
         super().__init__(data=data_dicts, transform=transform)
 
     @abstractmethod

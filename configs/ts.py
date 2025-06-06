@@ -14,7 +14,7 @@ class TotalSegmentator(Config):
         self.data.q_hi = 0.9
         self.data.suprem_backbone = "unet"
 
-        self.data.task = ["denoising", "reconstruction"]
+        self.data.task = "denoising"
         # denoising config
         self.data.sigma = 0.2
         # reconstruction config
@@ -47,7 +47,7 @@ class TotalSegmentator(Config):
         self.calibration.lambda_max = 0.15
         self.calibration.stepsize = 2e-03
 
-        self.calibration.n_opt = 32
+        self.calibration.n_opt = 4
         self.calibration.gamma = np.linspace(0.3, 0.7, 16)
 
         # k-RCPS config

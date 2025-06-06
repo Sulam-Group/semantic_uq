@@ -299,7 +299,7 @@ def calibrate(config: Config, workdir=C.workdir):
             i_mean=val_i.mean().item(),
             organ_i_mean=organ_i_mean,
         )
-    results.save(workdir=workdir)
+    # results.save(workdir=workdir)
 
 
 def main(args):
